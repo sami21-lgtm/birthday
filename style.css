@@ -1,4 +1,4 @@
-/* Styling to match the exact render quality of the image */
+/* Reset and Base Setup */
 * {
     margin: 0;
     padding: 0;
@@ -16,7 +16,7 @@ body {
     perspective: 1200px;
 }
 
-/* --- Exact Background Match --- */
+/* --- Space Background --- */
 .space-background {
     position: absolute;
     inset: 0;
@@ -43,18 +43,21 @@ body {
     opacity: 0.8;
 }
 
-/* --- Main Layout --- */
+/* --- Responsive Scene Container --- */
 .scene-container {
     position: relative;
     width: 100%;
     max-width: 900px;
-    height: 500px;
+    height: 100%;
+    max-height: 600px;
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(1); /* Default size for PC */
+    transition: transform 0.3s ease;
 }
 
-/* --- 3D Happy Birthday Text (Bold & Extruded like the image) --- */
+/* --- 3D Birthday Text --- */
 .birthday-3d-text {
     position: absolute;
     display: flex;
@@ -62,6 +65,7 @@ body {
     align-items: center;
     z-index: 2;
     transform: translateZ(50px);
+    pointer-events: none;
 }
 
 .text-3d {
@@ -84,10 +88,10 @@ body {
     margin-top: 10px;
 }
 
-/* --- Furry Blue Astronaut (Realistic CSS Fur/Fuzz effect) --- */
+/* --- Furry Blue Astronaut --- */
 .furry-astronaut {
     position: absolute;
-    bottom: 0px;
+    bottom: 80px;
     z-index: 10;
     transform: translateZ(100px);
     display: flex;
@@ -108,7 +112,6 @@ body {
     animation: walk-dance 2.5s ease-in-out infinite alternate;
 }
 
-/* Shiny Gold Curved Visor */
 .gold-helmet-visor {
     position: absolute;
     top: 35px;
@@ -124,7 +127,6 @@ body {
         0 10px 10px rgba(0, 0, 0, 0.3);
 }
 
-/* Fuzzy Arms & Legs */
 .arm, .leg {
     position: absolute;
     background-color: #52a3e6;
@@ -170,19 +172,19 @@ body {
     animation: tap-leg 0.6s ease-in-out infinite alternate-reverse;
 }
 
-/* --- Floating Toy Elements --- */
+/* --- Floating Space Objects --- */
 .toy-rocket {
     position: absolute;
     font-size: 4.5rem;
-    top: -20px;
+    top: 40px;
     animation: rocket-path 12s linear infinite;
 }
 
 .saturn-planet {
     position: absolute;
     font-size: 5rem;
-    top: -60px;
-    left: 20%;
+    top: -30px;
+    left: 15%;
     animation: float-slow 6s ease-in-out infinite;
     filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
 }
@@ -190,7 +192,7 @@ body {
 .ufo-saucer {
     position: absolute;
     font-size: 3rem;
-    bottom: 120px;
+    bottom: 200px;
     right: 5%;
     animation: float-slow 4s ease-in-out infinite;
 }
@@ -198,22 +200,22 @@ body {
 /* --- Metallic 3D Balloons --- */
 .balloon-cluster {
     position: absolute;
-    bottom: 100px;
+    bottom: 180px;
     display: flex;
-    gap: 10px;
+    gap: 8px;
 }
 
-.left-balloons { left: 2%; animation: swing 5s ease-in-out infinite alternate; }
-.right-balloons { right: 2%; animation: swing 5.5s ease-in-out infinite alternate-reverse; }
+.left-balloons { left: 5%; animation: swing 5s ease-in-out infinite alternate; }
+.right-balloons { right: 5%; animation: swing 5.5s ease-in-out infinite alternate-reverse; }
 
 .balloon {
     width: 65px;
     height: 80px;
     border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
     position: relative;
+    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.4);
 }
 
-/* Specular Highlight / 3D Look for Balloon */
 .balloon::before {
     content: '';
     position: absolute;
@@ -226,7 +228,6 @@ body {
     transform: rotate(-30deg);
 }
 
-/* 3D Metallic Color Gradients from image */
 .metallic-silver { background: radial-gradient(circle at 35% 35%, #ffffff 0%, #b0b0b0 60%, #5e5e5e 100%); }
 .metallic-blue { background: radial-gradient(circle at 35% 35%, #3a86c8 0%, #1d3557 70%, #0b132b 100%); }
 .metallic-gold { background: radial-gradient(circle at 35% 35%, #ffd700 0%, #d4af37 60%, #8a6d0f 100%); }
@@ -237,7 +238,7 @@ body {
 /* --- Ground Decorations --- */
 .ground-deco {
     position: absolute;
-    bottom: -100px;
+    bottom: 20px;
     width: 100%;
     display: flex;
     justify-content: space-between;
@@ -272,6 +273,30 @@ body {
     animation: bounce-tip 1.5s infinite alternate;
 }
 
+/* ==========================================================
+   📱 MOBILE & TABLET MEDIA QUERIES (ফর নিখুঁত মোবাইল সাইজ)
+   ========================================================== */
+@media (max-width: 768px) {
+    .scene-container {
+        transform: scale(0.7); /* ছোট স্ক্রিনের জন্য পুরো সিন জুম-আউট হবে */
+    }
+}
+
+@media (max-width: 480px) {
+    .scene-container {
+        transform: scale(0.5); /* অতি ক্ষুদ্র মোবাইলের জন্য সাইজ অ্যাডজাস্টমেন্ট */
+    }
+    .text-3d {
+        font-size: 4.5rem; /* টেক্সট সাইজ স্ক্রিনে ফিট করার জন্য সামান্য ছোট করা হয়েছে */
+    }
+    .row-2 {
+        font-size: 4.2rem;
+    }
+    .saturn-planet {
+        left: 5%; /* গ্রহটিকে একটু ভেতরে আনা হয়েছে */
+    }
+}
+
 /* --- Animations --- */
 @keyframes walk-dance {
     0% { transform: translateY(0) rotate(-4deg) scale(1); }
@@ -299,7 +324,7 @@ body {
 }
 
 @keyframes rocket-path {
-    0% { transform: translate(-150px, 200px) rotate(45deg); }
+    0% { transform: translate(-150px, 150px) rotate(45deg); }
     100% { transform: translate(1000px, -300px) rotate(45deg); }
 }
 
