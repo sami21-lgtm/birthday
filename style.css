@@ -1,0 +1,294 @@
+/* Styling to match the exact render quality of the image */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    background-color: #0d1b2a;
+    height: 100vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    overflow: hidden;
+    font-family: 'Arial Black', Gadget, sans-serif;
+    perspective: 1200px;
+}
+
+/* --- Exact Background Match --- */
+.space-background {
+    position: absolute;
+    inset: 0;
+    background: radial-gradient(circle at 50% 40%, #1d3557 0%, #0b132b 80%, #050811 100%);
+    z-index: -5;
+    overflow: hidden;
+}
+
+.nebula {
+    position: absolute;
+    top: 20%;
+    left: 20%;
+    width: 60%;
+    height: 60%;
+    background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, transparent 70%);
+    filter: blur(50px);
+    z-index: -4;
+}
+
+.star {
+    position: absolute;
+    background: #ffffff;
+    border-radius: 50%;
+    opacity: 0.8;
+}
+
+/* --- Main Layout --- */
+.scene-container {
+    position: relative;
+    width: 100%;
+    max-width: 900px;
+    height: 500px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+/* --- 3D Happy Birthday Text (Bold & Extruded like the image) --- */
+.birthday-3d-text {
+    position: absolute;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    z-index: 2;
+    transform: translateZ(50px);
+}
+
+.text-3d {
+    font-size: 5rem;
+    color: #f1faee;
+    text-shadow: 
+        0 1px 0 #e0e0e0,
+        0 2px 0 #d5d5d5,
+        0 3px 0 #ccc,
+        0 4px 0 #b3b3b3,
+        0 5px 0 #999,
+        0 6px 0 #808080,
+        0 15px 25px rgba(0, 0, 0, 0.7);
+    letter-spacing: 4px;
+    line-height: 1;
+}
+
+.row-2 {
+    font-size: 4.8rem;
+    margin-top: 10px;
+}
+
+/* --- Furry Blue Astronaut (Realistic CSS Fur/Fuzz effect) --- */
+.furry-astronaut {
+    position: absolute;
+    bottom: 0px;
+    z-index: 10;
+    transform: translateZ(100px);
+    display: flex;
+    justify-content: center;
+}
+
+.fur-body {
+    width: 130px;
+    height: 180px;
+    background-color: #52a3e6;
+    border-radius: 65px 65px 45px 45px;
+    position: relative;
+    /* This creates a 3D fuzzy/furry texture appearance in CSS */
+    box-shadow: 
+        0 0 0 8px #52a3e6, 
+        0 0 15px 5px rgba(82, 163, 230, 0.6),
+        inset -15px -15px 30px rgba(0, 0, 0, 0.4),
+        inset 15px 15px 30px rgba(255, 255, 255, 0.5);
+    animation: walk-dance 2.5s ease-in-out infinite alternate;
+}
+
+/* Shiny Gold Curved Visor */
+.gold-helmet-visor {
+    position: absolute;
+    top: 35px;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 70px;
+    height: 50px;
+    background: radial-gradient(circle at 30% 30%, #fff 0%, #ffd700 40%, #9e7810 100%);
+    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
+    border: 3px solid #ffffff;
+    box-shadow: 
+        0 0 20px rgba(255, 215, 0, 0.6),
+        0 10px 10px rgba(0, 0, 0, 0.3);
+}
+
+/* Fuzzy Arms & Legs */
+.arm, .leg {
+    position: absolute;
+    background-color: #52a3e6;
+    border-radius: 30px;
+    box-shadow: 
+        0 0 0 4px #52a3e6,
+        inset -5px -5px 10px rgba(0, 0, 0, 0.3);
+}
+
+.arm-left {
+    width: 35px;
+    height: 80px;
+    left: -25px;
+    top: 60px;
+    transform-origin: top right;
+    animation: wave-arm 1.2s ease-in-out infinite alternate;
+}
+
+.arm-right {
+    width: 35px;
+    height: 80px;
+    right: -25px;
+    top: 60px;
+    transform-origin: top left;
+    animation: wave-arm 1.2s ease-in-out infinite alternate-reverse;
+}
+
+.leg-left {
+    width: 40px;
+    height: 70px;
+    bottom: -50px;
+    left: 15px;
+    transform-origin: top center;
+    animation: tap-leg 0.6s ease-in-out infinite alternate;
+}
+
+.leg-right {
+    width: 40px;
+    height: 70px;
+    bottom: -50px;
+    right: 15px;
+    transform-origin: top center;
+    animation: tap-leg 0.6s ease-in-out infinite alternate-reverse;
+}
+
+/* --- Floating Toy Elements --- */
+.toy-rocket {
+    position: absolute;
+    font-size: 4.5rem;
+    top: -20px;
+    animation: rocket-path 12s linear infinite;
+}
+
+.saturn-planet {
+    position: absolute;
+    font-size: 5rem;
+    top: -60px;
+    left: 20%;
+    animation: float-slow 6s ease-in-out infinite;
+    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
+}
+
+.ufo-saucer {
+    position: absolute;
+    font-size: 3rem;
+    bottom: 120px;
+    right: 5%;
+    animation: float-slow 4s ease-in-out infinite;
+}
+
+/* --- Metallic 3D Balloons --- */
+.balloon-cluster {
+    position: absolute;
+    bottom: 100px;
+    display: flex;
+    gap: 10px;
+}
+
+.left-balloons { left: 2%; animation: swing 5s ease-in-out infinite alternate; }
+.right-balloons { right: 2%; animation: swing 5.5s ease-in-out infinite alternate-reverse; }
+
+.balloon {
+    width: 65px;
+    height: 80px;
+    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
+    position: relative;
+}
+
+/* Specular Highlight / 3D Look for Balloon */
+.balloon::before {
+    content: '';
+    position: absolute;
+    top: 10px;
+    left: 15px;
+    width: 15px;
+    height: 8px;
+    background: rgba(255, 255, 255, 0.6);
+    border-radius: 50%;
+    transform: rotate(-30deg);
+}
+
+/* 3D Metallic Color Gradients from image */
+.metallic-silver { background: radial-gradient(circle at 35% 35%, #ffffff 0%, #b0b0b0 60%, #5e5e5e 100%); }
+.metallic-blue { background: radial-gradient(circle at 35% 35%, #3a86c8 0%, #1d3557 70%, #0b132b 100%); }
+.metallic-gold { background: radial-gradient(circle at 35% 35%, #ffd700 0%, #d4af37 60%, #8a6d0f 100%); }
+.metallic-red { background: radial-gradient(circle at 35% 35%, #ff4d4d 0%, #b30000 70%, #4a0000 100%); }
+.metallic-blue-dark { background: radial-gradient(circle at 35% 35%, #00b4d8 0%, #0077b6 70%, #03045e 100%); }
+.metallic-silver-dark { background: radial-gradient(circle at 35% 35%, #e2e2e2 0%, #8d99ae 70%, #2b2d42 100%); }
+
+/* --- Ground Decorations --- */
+.ground-deco {
+    position: absolute;
+    bottom: -100px;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    padding: 0 40px;
+}
+
+.gift-box {
+    font-size: 3.5rem;
+    filter: drop-shadow(0 8px 10px rgba(0,0,0,0.5));
+}
+
+.gold-star {
+    font-size: 2.5rem;
+    color: #ffd700;
+    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
+    animation: pulse-star 2s infinite alternate;
+}
+
+/* --- Animations --- */
+@keyframes walk-dance {
+    0% { transform: translateY(0) rotate(-4deg) scale(1); }
+    100% { transform: translateY(-12px) rotate(4deg) scale(1.02); }
+}
+
+@keyframes wave-arm {
+    0% { transform: rotate(-20deg); }
+    100% { transform: rotate(20deg); }
+}
+
+@keyframes tap-leg {
+    0% { transform: rotate(-10deg); }
+    100% { transform: rotate(10deg); }
+}
+
+@keyframes float-slow {
+    0%, 100% { transform: translateY(0); }
+    50% { transform: translateY(-15px); }
+}
+
+@keyframes swing {
+    0% { transform: rotate(-3deg) translateY(0); }
+    100% { transform: rotate(3deg) translateY(-10px); }
+}
+
+@keyframes rocket-path {
+    0% { transform: translate(-150px, 200px) rotate(45deg); }
+    100% { transform: translate(1000px, -300px) rotate(45deg); }
+}
+
+@keyframes pulse-star {
+    from { transform: scale(0.9); opacity: 0.7; }
+    to { transform: scale(1.1); opacity: 1; }
+}
