@@ -51,7 +51,7 @@ document.addEventListener('click', () => {
         }).catch((error) => {
             console.log("Audio playback failed:", error);
             // Backup online audio play if local 'audio.mp3' fails
-            audio.src = "https://assets.mixkit.co/active_storage/sfx/123/123-200.wav";
+            audio.src ="percy-duke__happy-birthday-music-box(chosic.com).mp3";
             audio.play();
         });
     }
