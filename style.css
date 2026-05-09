@@ -1,4 +1,3 @@
-/* Reset and Base Setup */
 * {
     margin: 0;
     padding: 0;
@@ -6,334 +5,171 @@
 }
 
 body {
-    background-color: #0d1b2a;
-    height: 100vh;
+    background-color: #0d0d0d;
     display: flex;
     justify-content: center;
     align-items: center;
+    min-height: 100vh;
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
     overflow: hidden;
-    font-family: 'Arial Black', Gadget, sans-serif;
-    perspective: 1200px;
+    padding: 10px;
 }
 
-/* --- Space Background --- */
-.space-background {
-    position: absolute;
-    inset: 0;
-    background: radial-gradient(circle at 50% 40%, #1d3557 0%, #0b132b 80%, #050811 100%);
-    z-index: -5;
-    overflow: hidden;
-}
-
-.nebula {
-    position: absolute;
-    top: 20%;
-    left: 20%;
-    width: 60%;
-    height: 60%;
-    background: radial-gradient(circle, rgba(0, 180, 216, 0.15) 0%, transparent 70%);
-    filter: blur(50px);
-    z-index: -4;
-}
-
-.star {
-    position: absolute;
-    background: #ffffff;
-    border-radius: 50%;
-    opacity: 0.8;
-}
-
-/* --- Responsive Scene Container --- */
-.scene-container {
+/* Main Card Container (Responsive 16:9 ratio for both mobile and PC) */
+.eid-card {
     position: relative;
     width: 100%;
-    max-width: 900px;
-    height: 100%;
-    max-height: 600px;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transform: scale(1); /* Default size for PC */
-    transition: transform 0.3s ease;
+    max-width: 800px;
+    aspect-ratio: 16/9; /* Keeps perfect aspect ratio on all screen sizes */
+    background-image: url('image_bcd216.png'); /* Your uploaded picture */
+    background-size: 100% 100%; /* Stretches and fits perfectly without cropping */
+    background-position: center;
+    background-repeat: no-repeat;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px rgba(0, 0, 0, 0.8);
+    border: 3px solid #d4af37;
+    overflow: hidden;
 }
 
-/* --- 3D Birthday Text --- */
-.birthday-3d-text {
+/* Speech Bubble styling */
+.speech-bubble {
     position: absolute;
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    z-index: 2;
-    transform: translateZ(50px);
-    pointer-events: none;
-}
-
-.text-3d {
-    font-size: 5rem;
-    color: #f1faee;
-    text-shadow: 
-        0 1px 0 #e0e0e0,
-        0 2px 0 #d5d5d5,
-        0 3px 0 #ccc,
-        0 4px 0 #b3b3b3,
-        0 5px 0 #999,
-        0 6px 0 #808080,
-        0 15px 25px rgba(0, 0, 0, 0.7);
-    letter-spacing: 4px;
-    line-height: 1;
-}
-
-.row-2 {
-    font-size: 4.8rem;
-    margin-top: 10px;
-}
-
-/* --- Furry Blue Astronaut --- */
-.furry-astronaut {
-    position: absolute;
-    bottom: 80px;
-    z-index: 10;
-    transform: translateZ(100px);
-    display: flex;
-    justify-content: center;
-}
-
-.fur-body {
-    width: 130px;
-    height: 180px;
-    background-color: #52a3e6;
-    border-radius: 65px 65px 45px 45px;
-    position: relative;
-    box-shadow: 
-        0 0 0 8px #52a3e6, 
-        0 0 15px 5px rgba(82, 163, 230, 0.6),
-        inset -15px -15px 30px rgba(0, 0, 0, 0.4),
-        inset 15px 15px 30px rgba(255, 255, 255, 0.5);
-    animation: walk-dance 2.5s ease-in-out infinite alternate;
-}
-
-.gold-helmet-visor {
-    position: absolute;
-    top: 35px;
+    top: 8%;
     left: 50%;
-    transform: translateX(-50%);
-    width: 70px;
-    height: 50px;
-    background: radial-gradient(circle at 30% 30%, #fff 0%, #ffd700 40%, #9e7810 100%);
-    border-radius: 50% 50% 45% 45% / 60% 60% 40% 40%;
-    border: 3px solid #ffffff;
-    box-shadow: 
-        0 0 20px rgba(255, 215, 0, 0.6),
-        0 10px 10px rgba(0, 0, 0, 0.3);
-}
-
-.arm, .leg {
-    position: absolute;
-    background-color: #52a3e6;
-    border-radius: 30px;
-    box-shadow: 
-        0 0 0 4px #52a3e6,
-        inset -5px -5px 10px rgba(0, 0, 0, 0.3);
-}
-
-.arm-left {
-    width: 35px;
-    height: 80px;
-    left: -25px;
-    top: 60px;
-    transform-origin: top right;
-    animation: wave-arm 1.2s ease-in-out infinite alternate;
-}
-
-.arm-right {
-    width: 35px;
-    height: 80px;
-    right: -25px;
-    top: 60px;
-    transform-origin: top left;
-    animation: wave-arm 1.2s ease-in-out infinite alternate-reverse;
-}
-
-.leg-left {
-    width: 40px;
-    height: 70px;
-    bottom: -50px;
-    left: 15px;
-    transform-origin: top center;
-    animation: tap-leg 0.6s ease-in-out infinite alternate;
-}
-
-.leg-right {
-    width: 40px;
-    height: 70px;
-    bottom: -50px;
-    right: 15px;
-    transform-origin: top center;
-    animation: tap-leg 0.6s ease-in-out infinite alternate-reverse;
-}
-
-/* --- Floating Space Objects --- */
-.toy-rocket {
-    position: absolute;
-    font-size: 4.5rem;
-    top: 40px;
-    animation: rocket-path 12s linear infinite;
-}
-
-.saturn-planet {
-    position: absolute;
-    font-size: 5rem;
-    top: -30px;
-    left: 15%;
-    animation: float-slow 6s ease-in-out infinite;
-    filter: drop-shadow(0 10px 15px rgba(0,0,0,0.5));
-}
-
-.ufo-saucer {
-    position: absolute;
-    font-size: 3rem;
-    bottom: 200px;
-    right: 5%;
-    animation: float-slow 4s ease-in-out infinite;
-}
-
-/* --- Metallic 3D Balloons --- */
-.balloon-cluster {
-    position: absolute;
-    bottom: 180px;
-    display: flex;
-    gap: 8px;
-}
-
-.left-balloons { left: 5%; animation: swing 5s ease-in-out infinite alternate; }
-.right-balloons { right: 5%; animation: swing 5.5s ease-in-out infinite alternate-reverse; }
-
-.balloon {
-    width: 65px;
-    height: 80px;
-    border-radius: 50% 50% 50% 50% / 40% 40% 60% 60%;
-    position: relative;
-    box-shadow: inset -5px -5px 15px rgba(0,0,0,0.4);
-}
-
-.balloon::before {
-    content: '';
-    position: absolute;
-    top: 10px;
-    left: 15px;
-    width: 15px;
-    height: 8px;
-    background: rgba(255, 255, 255, 0.6);
-    border-radius: 50%;
-    transform: rotate(-30deg);
-}
-
-.metallic-silver { background: radial-gradient(circle at 35% 35%, #ffffff 0%, #b0b0b0 60%, #5e5e5e 100%); }
-.metallic-blue { background: radial-gradient(circle at 35% 35%, #3a86c8 0%, #1d3557 70%, #0b132b 100%); }
-.metallic-gold { background: radial-gradient(circle at 35% 35%, #ffd700 0%, #d4af37 60%, #8a6d0f 100%); }
-.metallic-red { background: radial-gradient(circle at 35% 35%, #ff4d4d 0%, #b30000 70%, #4a0000 100%); }
-.metallic-blue-dark { background: radial-gradient(circle at 35% 35%, #00b4d8 0%, #0077b6 70%, #03045e 100%); }
-.metallic-silver-dark { background: radial-gradient(circle at 35% 35%, #e2e2e2 0%, #8d99ae 70%, #2b2d42 100%); }
-
-/* --- Ground Decorations --- */
-.ground-deco {
-    position: absolute;
-    bottom: 20px;
-    width: 100%;
-    display: flex;
-    justify-content: space-between;
-    padding: 0 40px;
-}
-
-.gift-box {
-    font-size: 3.5rem;
-    filter: drop-shadow(0 8px 10px rgba(0,0,0,0.5));
-}
-
-.gold-star {
-    font-size: 2.5rem;
-    color: #ffd700;
-    text-shadow: 0 0 10px rgba(255, 215, 0, 0.8);
-    animation: pulse-star 2s infinite alternate;
-}
-
-/* Music Notification Badge */
-.music-tip {
-    position: absolute;
-    bottom: 20px;
-    background: rgba(255, 255, 255, 0.15);
-    padding: 8px 16px;
-    border-radius: 30px;
-    color: white;
-    font-size: 0.9rem;
-    font-family: sans-serif;
-    backdrop-filter: blur(5px);
+    transform: translateX(-50%) scale(0.8);
+    background: rgba(0, 0, 0, 0.85);
+    color: #fff;
+    padding: 8px 18px;
+    border-radius: 20px;
+    border: 1.5px solid #d4af37;
+    font-size: 0.95rem;
+    font-weight: bold;
+    text-align: center;
+    box-shadow: 0 4px 10px rgba(212, 175, 55, 0.3);
+    opacity: 0;
     pointer-events: none;
-    z-index: 100;
-    animation: bounce-tip 1.5s infinite alternate;
+    transition: all 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    z-index: 10;
+    white-space: nowrap;
 }
 
-/* ==========================================================
-   📱 MOBILE & TABLET MEDIA QUERIES (ফর নিখুঁত মোবাইল সাইজ)
-   ========================================================== */
-@media (max-width: 768px) {
-    .scene-container {
-        transform: scale(0.7); /* ছোট স্ক্রিনের জন্য পুরো সিন জুম-আউট হবে */
-    }
+.speech-bubble.show {
+    opacity: 1;
+    transform: translateX(-50%) scale(1);
 }
 
-@media (max-width: 480px) {
-    .scene-container {
-        transform: scale(0.5); /* অতি ক্ষুদ্র মোবাইলের জন্য সাইজ অ্যাডজাস্টমেন্ট */
-    }
-    .text-3d {
-        font-size: 4.5rem; /* টেক্সট সাইজ স্ক্রিনে ফিট করার জন্য সামান্য ছোট করা হয়েছে */
-    }
-    .row-2 {
-        font-size: 4.2rem;
-    }
-    .saturn-planet {
-        left: 5%; /* গ্রহটিকে একটু ভেতরে আনা হয়েছে */
-    }
+/* --- Responsive Animal Hotspots (Using percentage % to scale perfectly with screen size) --- */
+
+/* 1. Sheep (White animal on the left) */
+.animal-sheep {
+    position: absolute;
+    bottom: 22%;
+    right: 28%;
+    width: 14%;
+    height: 42%;
+    cursor: pointer;
+    border-radius: 30%;
+    background: rgba(255, 0, 0, 0); /* Invisible */
+    z-index: 5;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent; /* Removes blue tap highlight on mobile */
+}
+
+/* 2. Camel (Yellow animal in the middle) */
+.animal-camel {
+    position: absolute;
+    bottom: 22%;
+    right: 15%;
+    width: 18%;
+    height: 55%;
+    cursor: pointer;
+    border-radius: 30%;
+    background: rgba(0, 255, 0, 0); /* Invisible */
+    z-index: 4;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* 3. Cow (Brown animal on the right) */
+.animal-cow {
+    position: absolute;
+    bottom: 18%;
+    right: 3%;
+    width: 18%;
+    height: 45%;
+    cursor: pointer;
+    border-radius: 30%;
+    background: rgba(0, 0, 255, 0); /* Invisible */
+    z-index: 5;
+    transition: transform 0.2s;
+    -webkit-tap-highlight-color: transparent;
+}
+
+/* Hover & Active Effects */
+.animal-sheep:hover, .animal-camel:hover, .animal-cow:hover {
+    transform: scale(1.03);
+}
+
+.animal-sheep:active, .animal-camel:active, .animal-cow:active {
+    transform: scale(0.97);
 }
 
 /* --- Animations --- */
-@keyframes walk-dance {
-    0% { transform: translateY(0) rotate(-4deg) scale(1); }
-    100% { transform: translateY(-12px) rotate(4deg) scale(1.02); }
-}
 
-@keyframes wave-arm {
-    0% { transform: rotate(-20deg); }
-    100% { transform: rotate(20deg); }
-}
-
-@keyframes tap-leg {
-    0% { transform: rotate(-10deg); }
-    100% { transform: rotate(10deg); }
-}
-
-@keyframes float-slow {
+/* Sheep Jump Animation */
+@keyframes jump {
     0%, 100% { transform: translateY(0); }
-    50% { transform: translateY(-15px); }
+    50% { transform: translateY(-10px); }
+}
+.jump-anim {
+    animation: jump 0.4s ease-in-out 2;
 }
 
-@keyframes swing {
-    0% { transform: rotate(-3deg) translateY(0); }
-    100% { transform: rotate(3deg) translateY(-10px); }
+/* Camel Sway Animation */
+@keyframes sway {
+    0%, 100% { transform: rotate(0deg); }
+    50% { transform: rotate(3deg); }
+}
+.sway-anim {
+    animation: sway 0.5s ease-in-out 2;
 }
 
-@keyframes rocket-path {
-    0% { transform: translate(-150px, 150px) rotate(45deg); }
-    100% { transform: translate(1000px, -300px) rotate(45deg); }
+/* Cow Head Shake Animation */
+@keyframes shakeHead {
+    0%, 100% { transform: translateX(0); }
+    25% { transform: translateX(-3px); }
+    75% { transform: translateX(3px); }
+}
+.shake-anim {
+    animation: shakeHead 0.3s ease-in-out 3;
 }
 
-@keyframes pulse-star {
-    from { transform: scale(0.9); opacity: 0.7; }
-    to { transform: scale(1.1); opacity: 1; }
+/* Bottom Instruction Text */
+.instruction {
+    position: absolute;
+    bottom: 5px;
+    left: 50%;
+    transform: translateX(-50%);
+    color: #d4af37;
+    font-size: 0.75rem;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 3px 12px;
+    border-radius: 10px;
+    pointer-events: none;
+    text-align: center;
+    width: 90%;
+    max-width: max-content;
 }
 
-@keyframes bounce-tip {
-    0% { transform: translateY(0); }
-    100% { transform: translateY(-5px); }
+/* Adjust font size and layout for larger screens (PC/Tablets) */
+@media (min-width: 600px) {
+    .speech-bubble {
+        font-size: 1.2rem;
+        padding: 12px 25px;
+        border-radius: 30px;
+    }
+    .instruction {
+        font-size: 0.85rem;
+        padding: 4px 15px;
+    }
 }
