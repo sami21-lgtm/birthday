@@ -1,6 +1,10 @@
-// Creates deep starfield background dynamically
+// Variable and element selectors
+const starContainer = document.getElementById('star-container');
+const audio = document.getElementById('birthday-audio');
+const musicTip = document.querySelector('.music-tip');
+
+// 1. Creates deep starfield background dynamically
 function generateStarfield() {
-    const starContainer = document.getElementById('star-container');
     const totalStars = 80;
 
     for (let i = 0; i < totalStars; i++) {
@@ -36,5 +40,22 @@ styleSheet.innerText = `
 }`;
 document.head.appendChild(styleSheet);
 
-// Run on load
+// 2. Play Audio/Voice on the first click (Bypasses Browser Autoplay Restrictions)
+document.addEventListener('click', () => {
+    if (audio.paused) {
+        audio.play().then(() => {
+            // Fade out and hide the tap instruction helper
+            musicTip.style.transition = 'opacity 0.8s ease';
+            musicTip.style.opacity = '0';
+            setTimeout(() => musicTip.remove(), 800);
+        }).catch((error) => {
+            console.log("Audio playback failed:", error);
+            // Backup online audio play if local 'audio.mp3' fails
+            audio.src = "https://assets.mixkit.co/active_storage/sfx/123/123-200.wav";
+            audio.play();
+        });
+    }
+}, { once: true }); // Trigger once on any first tap/click
+
+// Run starfield when page finishes loading
 window.addEventListener('DOMContentLoaded', generateStarfield);
