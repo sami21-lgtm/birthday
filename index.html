@@ -3,14 +3,14 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>3D Space Birthday with Audio</title>
+    <title>3D Space Birthday with Gift Burst</title>
     <link rel="stylesheet" href="style.css">
 </head>
 <body>
 
     <audio id="birthday-audio" loop>
-        <source src="percy-duke__happy-birthday-music-box(chosic.com).mp3" type="audio/mpeg">
-        <source src="percy-duke__happy-birthday-music-box(chosic.com).mp3" type="audio/wav">
+        <source src="audio.mp3" type="audio/mpeg">
+        <source src="https://assets.mixkit.co/active_storage/sfx/123/123-200.wav" type="audio/wav">
         Your browser does not support the audio element.
     </audio>
 
@@ -53,13 +53,30 @@
         </div>
 
         <div class="ground-deco">
-            <div class="gift-box cyan-gift">🎁</div>
+            <div class="gift-wrapper" id="gift-box-trigger">
+                <div class="gift-emoji">🎁</div>
+                <span class="click-me">Press Me!</span>
+            </div>
+
             <div class="gold-star s-1">★</div>
             <div class="gold-star s-2">★</div>
-            <div class="gift-box red-gift">🎁</div>
+            
+            <div class="static-gift">🎁</div>
         </div>
 
     </div>
+
+    <div class="photo-modal" id="photo-modal">
+        <div class="modal-content">
+            <span class="close-btn" id="close-btn">&times;</span>
+            <div class="frame-3d">
+                <img id="birthday-person-img" src="your-image.jpg" alt="Birthday Person">
+            </div>
+            <h3 class="wishing-tag">Happy Birthday to You! 🎉</h3>
+        </div>
+    </div>
+
+    <div class="confetti-container" id="confetti-container"></div>
 
     <div class="music-tip">Tap/Click anywhere to play music! 🎵</div>
 
