@@ -3,17 +3,23 @@
     margin: 0;
     padding: 0;
     box-sizing: border-box;
+    -webkit-tap-highlight-color: transparent; /* মোবাইলে ক্লিক করার সময় হাইলাইট বন্ধ করবে */
 }
 
 body {
     background-color: #0d1b2a;
     height: 100vh;
+    height: -webkit-fill-available; /* iOS Safari-র নিখুঁত হাইটের জন্য */
     display: flex;
     justify-content: center;
     align-items: center;
     overflow: hidden;
     font-family: 'Arial Black', Gadget, sans-serif;
     perspective: 1200px;
+}
+
+html {
+    height: -webkit-fill-available;
 }
 
 /* --- Space Background --- */
@@ -53,6 +59,7 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+    transform: scale(1);
     transition: transform 0.3s ease;
 }
 
@@ -257,7 +264,7 @@ body {
     animation: pulse-star 2s infinite alternate;
 }
 
-/* --- Interactive Gift Box Style (নতুন) --- */
+/* --- Interactive Gift Box --- */
 .gift-wrapper {
     position: relative;
     cursor: pointer;
@@ -293,19 +300,20 @@ body {
     box-shadow: 0 4px 6px rgba(0,0,0,0.3);
 }
 
-/* --- Interactive Picture Popup Frame (নতুন) --- */
+/* --- Interactive Picture Popup Frame --- */
 .photo-modal {
     position: fixed;
     inset: 0;
-    background: rgba(0,0,0,0.75);
+    background: rgba(0, 0, 0, 0.85);
     z-index: 1000;
     display: flex;
     justify-content: center;
     align-items: center;
     opacity: 0;
     pointer-events: none;
-    transition: opacity 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transition: opacity 0.4s ease;
     backdrop-filter: blur(8px);
+    -webkit-backdrop-filter: blur(8px);
 }
 
 .photo-modal.open {
@@ -315,16 +323,16 @@ body {
 
 .modal-content {
     background: radial-gradient(circle, #1d3557 0%, #0f1c30 100%);
-    padding: 30px;
-    border-radius: 25px;
+    padding: 24px;
+    border-radius: 20px;
     border: 4px solid #ffd700;
     box-shadow: 0 0 30px rgba(255, 215, 0, 0.4);
     position: relative;
-    max-width: 320px;
-    width: 90%;
+    max-width: 290px;
+    width: 85%;
     text-align: center;
-    transform: scale(0.5) rotate(-10deg);
-    transition: transform 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+    transform: scale(0.6) rotate(-8deg);
+    transition: transform 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.2);
 }
 
 .photo-modal.open .modal-content {
@@ -333,28 +341,29 @@ body {
 
 .close-btn {
     position: absolute;
-    top: 10px;
+    top: 5px;
     right: 15px;
     color: #ffffff;
-    font-size: 2rem;
+    font-size: 2.2rem;
     cursor: pointer;
     transition: color 0.2s;
+    z-index: 1010;
 }
 
 .close-btn:hover {
     color: #ff4d4d;
 }
 
-/* Beautiful 3D Frame for Image */
+/* 3D Frame for Image */
 .frame-3d {
     width: 100%;
     aspect-ratio: 1;
-    border-radius: 15px;
+    border-radius: 12px;
     overflow: hidden;
-    border: 6px solid #ffffff;
-    box-shadow: 0 15px 25px rgba(0,0,0,0.5);
-    background-color: #ccc;
-    margin-bottom: 20px;
+    border: 5px solid #ffffff;
+    box-shadow: 0 10px 20px rgba(0,0,0,0.5);
+    background-color: #2b2d42;
+    margin-bottom: 15px;
 }
 
 .frame-3d img {
@@ -365,12 +374,12 @@ body {
 
 .wishing-tag {
     color: #ffd700;
-    font-size: 1.3rem;
-    letter-spacing: 1px;
+    font-size: 1.15rem;
+    letter-spacing: 0.5px;
     text-shadow: 0 2px 5px rgba(0,0,0,0.5);
 }
 
-/* --- Confetti Effects (রঙিন তোড়া অ্যানিমেশন) --- */
+/* --- Confetti Effects --- */
 .confetti-container {
     position: fixed;
     inset: 0;
@@ -381,10 +390,10 @@ body {
 
 .confetti {
     position: absolute;
-    width: 10px;
-    height: 10px;
+    width: 8px;
+    height: 8px;
     background-color: #ffd700;
-    border-radius: 2px;
+    border-radius: 1px;
     opacity: 0.9;
 }
 
@@ -392,34 +401,50 @@ body {
 .music-tip {
     position: absolute;
     bottom: 20px;
-    background: rgba(255, 255, 255, 0.15);
+    background: rgba(255, 255, 255, 0.2);
     padding: 8px 16px;
     border-radius: 30px;
     color: white;
-    font-size: 0.9rem;
+    font-size: 0.85rem;
     font-family: sans-serif;
     backdrop-filter: blur(5px);
+    -webkit-backdrop-filter: blur(5px);
     pointer-events: none;
     z-index: 100;
     animation: bounce-tip 1.5s infinite alternate;
 }
 
-/* --- Responsive Media Queries --- */
+/* ==========================================
+   📱 MOBILE & TABLET MEDIA QUERIES
+   ========================================== */
 @media (max-width: 768px) {
     .scene-container {
-        transform: scale(0.7);
+        transform: scale(0.65); /* স্ক্রিন রেশিও অনুযায়ী সেফ জুম-আউট */
     }
 }
 
 @media (max-width: 480px) {
     .scene-container {
-        transform: scale(0.5);
+        transform: scale(0.48); /* ছোট স্ক্রিনযুক্ত ফোনের জন্য নিখুঁত স্কেল */
     }
     .text-3d {
-        font-size: 4.5rem;
+        font-size: 4.2rem;
     }
     .row-2 {
-        font-size: 4.2rem;
+        font-size: 3.9rem;
+    }
+    .saturn-planet {
+        left: 5%;
+    }
+    .toy-rocket {
+        top: 20px;
+    }
+    .modal-content {
+        max-width: 260px; /* মোবাইলে পপ-আপ ইমেজটি যেন সাইড থেকে কেটে না যায় */
+        padding: 15px;
+    }
+    .wishing-tag {
+        font-size: 1rem;
     }
 }
 
